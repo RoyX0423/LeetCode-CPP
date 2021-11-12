@@ -1,0 +1,49 @@
+class Solution {
+public:
+   vector <int> twoSum(vector<int>&nums, int target) {
+       vector<int> result;
+       int value,compIndex;
+       for(int i=0;i<nums.size();i++){
+           value=target-nums[i];
+           compIndex=i+1;
+           while(nums[compIndex]!=value&&compIndex<nums.size()-1){
+               
+               
+               
+               compIndex+=1;
+           }
+           if (nums[compIndex]==value){
+               result.push_back(i);
+               result.push_back(compIndex);
+               break;
+           }
+           
+           
+           
+           
+       }
+       if(nums[compIndex]!=value){
+           
+           result.push_back(-1);
+          result.push_back(-1);
+       }
+       
+       return result;
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        
+        
+        
+      
+      
+        
+    }
+};
