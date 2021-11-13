@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        int num=0;
+        if (x==0){
+            return true;
+            
+        }
+        else if(x<0||x%10==0){
+            return false;
+        }
+        else{
+            while(num<x){
+                num=num*10+x%10;
+                    x/=10;
+                
+            }
+            
+            
+        }
+        return (x==num)||(x==num/10);
+        
+        
+        
+       
+    }
+};
+
+//if value is negative return false
+//if value is 0 then return true, if not 0 and mod10=0 then return false, as multiple of 10 would not be a palindrome
+//else mod x by 10 to get 1st digit of reverted number digit, x=x/10, then mod x by 10 again...
+
+
+//num=0
+//each time num=num*10+x mod 10
+//after this, x=x/10
+//loop ends when x=num or num>x
+//if original x is of odd length, as long as its symmetrical about the mid point, it is a palindrome so in this case
+//if num/10==x then return true
+//or, of even length, if x=num then return true
+//else return false
