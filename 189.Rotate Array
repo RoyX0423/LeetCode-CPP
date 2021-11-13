@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+      k%=nums.size();
+        reverse(nums,0,nums.size()-1);//reversing all nums
+        
+        reverse(nums,0,k-1);//based on the previous result, reversing first k elements 
+        //so the first k elements are in the original order but now at the front
+        
+        reverse(nums,k,nums.size()-1);//same idea for last k elements
+        
+        
+        
+    }
+    
+    void reverse(vector<int>& nums,int start,int end){
+        
+        while(start<end){
+            int temp=nums[start];
+            nums[start]=nums[end];
+            nums[end]=temp;
+            start++;
+            end--;
+            
+            
+            
+        }
+        
+        
+        
+    }
+};
