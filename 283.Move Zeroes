@@ -1,6 +1,8 @@
 #include <iostream>
 #include<vector>
 
+
+
 using namespace std;
 
 
@@ -10,24 +12,36 @@ using namespace std;
 
 int main()
 {
+
 	vector<int> num = {0,1,0,3,12,0,1,0,3,12};
 	int count = 0;
+	vector<int>::iterator i = num.begin();
 
 
-	
-	for (auto i=0; i<num.size();i++) {
-		if (num[i]==0){
-			//bc the parameter passed to the erase function must be an iterator
-			//num.begin+i position is the iterator at index position i
-			num.erase(num.begin()+i);
-			count++;	
+	//after calling the erase, original i is invalided, which mean its unable to be read or write
+			//erase function will return the next valid iterator i to be used
 
+	while (i != num.end()) {
+		if (*i == 0) {
+			count++;
+			i = num.erase(i);
 
-			
 		
+		
+		}
+		else {
+			i++;
 		}
 	}
 
+
+
+
+	
+	
+
+
+			
 	if (count != 0) {
 		for (int a = 0; a < count; a++) {
 			num.push_back(0);
@@ -39,9 +53,9 @@ int main()
 	
 	}
 
-	for (int u = 0; u < num.size(); u++) {
+	for (auto u=num.begin(); u!=num.end(); u++) {
 	
-		cout << num[u] << endl;
+		cout << *u << endl;
 
 	}
 
