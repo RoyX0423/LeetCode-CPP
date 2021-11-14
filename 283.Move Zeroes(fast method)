@@ -1,0 +1,54 @@
+#include <iostream>
+#include<vector>
+
+
+
+using namespace std;
+
+
+
+
+
+
+int main()
+{
+
+	vector<int> num = {0,1,0,3,12,0,1,0,3,12};
+	int j = 0;
+	for (int i = 0; i < num.size(); i++) {
+		//if the element is not 0, we shift them forward
+		if (num[i] != 0) {
+			num[j] = num[i];
+			j++;		
+		}
+
+	
+	}
+	//starting from position j till 0, fill them up with 0s
+	for (int u = j; u < num.size(); u++) {
+		num[u] = 0;
+
+	
+	
+	}
+	
+	
+
+	for (auto u=num.begin(); u!=num.end(); u++) {
+	
+		cout << *u << endl;
+
+	}
+
+
+
+
+	
+	
+
+}
+
+
+
+
+
