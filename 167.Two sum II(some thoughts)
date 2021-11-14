@@ -1,0 +1,42 @@
+class Solution {
+public:
+    //Thoughts:
+    //since array is already sorted in ascending order
+    //we can use two pointers instead of map as limitations are less
+    //subscript be:lowptr>lowptr+1>....>highptr ,values in ascending order
+    //if num[lowptr]+num[highptr]<target, it means num[lowptr]is not big enough for the sum to be //target, we should lowptr++; to see if num[lowptr+1]is big enough to fit in
+    ///if num[lowptr]+num[highptr]>target, it means num[highptr] is too big for the sum to be //target, we should highptr--; to see if num[highptr-1]is small enough to fit in
+    //notice this is not as efficient if the arrary is not sorted, however, a sorted array allows //us to check the nearest highest number if the sum is too large, and the nearest small number if //the sum is too small, it makes not much difference when the diff between target and sum is large, //but as it approaches to the mid-point, this algorithm will be faster
+    
+    
+    vector<int> twoSum(vector<int>& numbers, int target) {
+      int low=0,high=numbers.size()-1;
+        vector<int>res;
+    
+        
+        while(low!=high){
+            if(numbers[low]+numbers[high]<target){
+                low++;
+                
+                
+            }
+            else if(numbers[low]+numbers[high]>target){
+                high--;
+                
+            }
+            else{
+                //one good thing is, low<high is definite over here so no need to re-sort the res
+                res.push_back(low+1);
+                res.push_back(high+1);
+                break;//remember to terminate the loop if solution is found
+                
+                
+            }
+            
+            
+        }
+        return res;
+        
+        
+    }
+};
