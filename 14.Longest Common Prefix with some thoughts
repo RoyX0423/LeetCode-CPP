@@ -1,0 +1,45 @@
+class Solution {
+public:
+    
+    //Thoughts:
+    //starting from pre=first element
+    //we loop through every element of the array and find the index of pre occured in this element
+    //if the index!=0 , then this element does not start with pre, we need to update pre by discarding the last character and then jump into a loop for the same array element rechecking if the element contains the new pre
+    //at the end of each comparison, we check if pre.length()=0, if so then no matching pre-fixes, we can terminate the whole algorithm n return an empty string
+    //this is repeated for every element so its gonna be a while loop inside a FOR loop
+    //BTW, if length of strs=0 then we return empty string directly
+    
+    
+    string longestCommonPrefix(vector<string>& strs) {
+        string pre;
+        if(strs.size()==0){
+            pre="";
+                   
+        }
+        else{
+            pre=strs[0];
+            for(auto i=strs.begin();i!=strs.end();i++){
+                while((*i).find(pre)!=0){
+                    pre=pre.substr(0,pre.length()-1);
+                    if(pre.length()==0){
+                        break;
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+        return pre;
+        
+        
+    }
+};
