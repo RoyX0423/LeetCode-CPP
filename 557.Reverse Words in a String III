@@ -1,0 +1,76 @@
+class Solution {
+public:  
+    //Thoughts:
+    //extract each single word separated by the space character
+    //reverse every single one of them and then overwrite them
+    //two basic cases: 1.separated by a space character 2.no delimiter
+    
+    
+    string reverseWords(string s) {
+        
+        
+        int start=0;
+        int end=s.find(" ");
+          
+        
+      if(end!=-1){ 
+          
+          s=s+" ";
+        
+        while(end!=-1){
+        //when end=-1, no more parts of the string can be treated
+        //so there is a problem whereby the last part of the string can be forgotten to be dealt with, bc when end=-1,there is still one last part left to be reversed
+        //the way to resolve this is simply to add an extra space character at the end
+            
+            
+             //substr(startindex,length)
+            string word=s.substr(start,end-start);
+            
+            
+            //replace(start,length,string2) to overwrite the part of orginal string
+            s.replace(start,end-start,reverse(word));
+            
+            //update pointers
+            //find(delim,start position where search will be taken place)
+            start=end+1;
+            end=s.find(" ",start);
+            
+    
+        }
+          //remove the extra space character at the end when the process is finished
+        s.erase(s.length()-1);
+      }
+        else{
+            
+            s=reverse(s);
+        }
+       
+        
+        return s;
+      
+        
+        
+        
+    }
+    
+    
+    //reversing a single word
+    string reverse(string a){
+        int start=0,end=a.length()-1;
+        
+        while(start<end){
+            char temp;
+            temp=a[start];
+            a[start]=a[end];
+            a[end]=temp;
+            start++;
+            end--;
+            
+          
+        }
+        return a;
+              
+    }
+    
+    
+};
