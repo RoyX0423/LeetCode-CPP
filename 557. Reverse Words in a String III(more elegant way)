@@ -1,0 +1,44 @@
+class Solution {
+public:  
+    //we can use of two pointers to locate the portion of the string
+    //reverse function with bi-directional iterators can be used to reverse the portion of the string
+    
+
+    
+    
+    string reverseWords(string s) {
+        
+        
+        //j is pointing at the start of each portion 
+        //the idea of two pointers is sort of similar to the quicksort partitioning
+        int j=0;
+        
+        
+        //two cases we need to deal with:1.a space character is met 2.last portion is scanned by i
+        //note that space character is a char so ' ', not " " in Cpp
+        
+        for(int i=0;i<=s.length();i++){
+            
+            if(s[i] == ' ' || i== s.length()){
+                //when i=length, the last portion can be treated, so in the FOR loop i<=length instead of i<length
+            
+                
+                reverse(s.begin()+j,s.begin()+i);
+                
+                //j now pointing to start of next portion
+                j=i+1;
+                
+                
+            }
+            
+            
+        }
+        return s;
+        
+        
+      
+    
+    
+
+    }   
+};
