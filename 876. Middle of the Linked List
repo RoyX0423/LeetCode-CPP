@@ -1,0 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    //ptr->next
+    //means (*ptr).next
+    //1.deference the ptr to get the value pointed by ptr first
+    //2.get the pointer that points to the next value in the linked list
+    
+    
+    //note that the last item in the list points to nullptr
+    //so fast->next cannot be Null bc we want to allow fast->next->next to be Null at the end
+    //same idea, fast itself cannot be null
+    
+    ListNode* middleNode(ListNode* head) {
+        //slow and fast are the pointers pointing to head initially
+        ListNode* slow=head;
+        ListNode* fast=head;
+       
+        while(fast!=nullptr&&fast->next!=nullptr){
+            slow=slow->next;
+            fast=fast->next->next;
+            
+        }
+        
+        return slow;
+        //notice the function header specifies that a listNode pointer is returned
+        
+        
+        
+        
+        
+        
+    }
+};
