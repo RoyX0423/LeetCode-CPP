@@ -1,0 +1,89 @@
+class Solution {
+public:
+    
+    //first thing to note:length can only be  ultiple of 2
+    //setting up a map matching the parenthesis
+    //remember to consider opening and closing parenthesis separately
+    //if an open parenthesis comes,push
+    //if a close praenthesis, check if match to top, if so pop, if no, brean n return false
+    //notice if the stack is empty, we cannot access the top and it will cause a run-time error if we try to
+    //so in the case whereby the close parenthesis comes when stack becomes empty,we need to break n return false direcly
+    
+    
+    //logic:
+    //if open comes, push
+    //if close comes,
+    //1.is stack empty? if so break n return false
+    //2.if not empty, is the top open matches with this close?
+    //3.if match, pop the stack
+    //4.if not match, break n return false
+    
+         
+    bool isValid(string s) { 
+        map<char,char>mp={
+            {'(',')'},
+            {'{','}'},
+            {'[',']'}            
+            
+        };
+        
+        
+        if(s.length()%2!=0){
+            return false;
+        }
+        else{
+            stack<char>stk;
+                        
+            for(int i=0;i<s.length();i++){
+                
+              
+                
+                    
+                
+                //key exist in the map(open parenthesis comes)
+                if(mp.find(s[i])!=mp.end()){
+                    stk.push(s[i]);
+                    
+                    
+                    
+                }
+                else{
+                    //stk is empty and the coming symbol is close parenthesis
+                    if(stk.size()==0){
+                        return false;
+                        break;
+                        
+                    }
+                    //stk is not empty and the coming close parentesis matches with the top
+                    else if(mp[stk.top()]==s[i]){
+                        stk.pop();
+                        
+                    }
+                    //stk is not empty but the coming close parenthesis does not match with top
+                    else{
+                        return false;
+                        break;
+                        
+                    }
+                    
+                    
+                }
+               
+                
+                
+            }
+            //if stk is empty then it is valid
+            return stk.empty();
+            
+            
+            
+            
+           
+            
+        }
+        
+        
+        
+    } 
+    
+};
