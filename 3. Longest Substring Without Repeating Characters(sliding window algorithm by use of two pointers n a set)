@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+       if(s.length()==0){          
+           return 0;
+       } 
+        else{
+            int j=0;
+            int max=0;
+            set<char>st;
+            for(int i=0;i<s.length();i++){
+                //char not in the set,insert
+                if(st.find(s[i]) == st.end()){
+                    st.insert(s[i]);                    
+                    
+                }
+                   //char already in the set,advances the j until s[i] no longer exists in the set and remove the repeated character pointed by j
+                   else{
+                       //advancing until this char is no longer in the set
+                       while(st.find(s[i])!=st.end()){
+                           st.erase(s[j]);
+                           j++;
+                       }
+                       
+                       
+                       st.insert(s[i]);
+                       //remember when we start a new window, we should also take this redundant character into the set as it becomes unique again                                                         
+                   }
+                 if(i-j+1>max){
+                     max=i-j+1;
+                 }
+                
+                   }
+             return max;
+                   }
+                  
+                   }
+                   };
+                  
+                
+                        
+                   
+            
+           
+            
+            
+            
