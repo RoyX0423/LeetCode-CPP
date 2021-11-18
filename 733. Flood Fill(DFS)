@@ -1,0 +1,47 @@
+class Solution {
+public:
+    
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int m=image.size();
+        int n=image[0].size();
+        //if og color=new color, no need to do any manipulations
+        if(image[sr][sc]==newColor){return image;}
+        else{floodFill(image,m,n,sr,sc,image[sr][sc],newColor);
+             return image;}
+        
+        
+        //image[sr][sc]means the [sc]element in the array image[sr]
+      
+        
+        
+        
+        
+    }
+    //image byref here
+    void floodFill(vector<vector<int>>& image,int m,int n,int x,int y,int ogColor,int newColor){
+        //checking for bounds
+        //why x=m and y=n are included into the error bounds?
+        //when x is at the most Left or y is at most bottom x=m-1, y=n-1 since image is 0-indexed!
+        if(x<0||x>=m||y<0||y>=n){return;}
+        
+        
+        //checking if the current pixel has the same color as the starting pixel
+        //if so we can do the flood fill, if no we just return nothing
+        if(image[x][y]!=ogColor){return;}
+        
+        //valid pixels with same color as og color
+        image[x][y]=newColor;
+        
+        //recurse the neibouring 4-directional pixels
+        floodFill(image,m,n,x-1,y,ogColor,newColor);
+        floodFill(image,m,n,x+1,y,ogColor,newColor);
+        floodFill(image,m,n,x,y-1,ogColor,newColor);
+        floodFill(image,m,n,x,y+1,ogColor,newColor);
+        
+        
+
+    }
+    
+    
+    
+};
