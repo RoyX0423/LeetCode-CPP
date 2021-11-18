@@ -1,0 +1,72 @@
+class Solution {
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        //when all elements are 0, grid is empty
+        if(grid.empty()){return 0;}
+        
+        //define grid size
+        //m is the number of arrays in the grid
+        //n is the number of elements in one array of grid
+        //so m is the number of rows(x), n is the number of fields(y)
+      int m=grid.size();
+      int n=grid[0].size();
+      int max=0;
+      int area=0;
+    
+  
+        
+        
+
+        
+        //starting looping through every element
+        //if a 1 is met, start DFS traversal
+        //else we jump onto next element       
+        for(int x=0;x<m;x++){
+            for(int y=0;y<n;y++){
+                if(grid[x][y]==1){
+                    
+                    traversalDFS(grid,m,n,x,y,max,area);
+                    area=0;
+                    
+                    //key point here:
+                    //area needs to be byref so that when DFS is performed, we can accumulate the area and keep track of the greatest area at the same time on each branches
+                    //but the problem is, when we meet a new island, byref makes the area not 0
+                    //so at the end of each traversal, we need to reset area to 0
+                    
+                }
+                               
+            }        
+        }
+        return max;
+        
+        
+        
+        
+    }
+    private:    
+      void traversalDFS(vector<vector<int>>& grid,int m,int n,int x,int y,int& max,int& area){
+        //bounds are reached or 0 is met, hit the base case
+        if(x<0||x>=m||y<0||y>=n||grid[x][y]==0){return;}
+       
+        //else we set this square to 0 and increment area
+       
+        area++;
+        
+        if(area>max){
+            max=area;
+        }
+        
+        grid[x][y]=0;
+    
+        
+        //go to 4-directional neibouring elements
+        traversalDFS(grid,m,n,x+1,y,max,area);
+        traversalDFS(grid,m,n,x-1,y,max,area);
+        traversalDFS(grid,m,n,x,y+1,max,area);
+        traversalDFS(grid,m,n,x,y-1,max,area);
+        
+        
+    }
+    
+    
+};
