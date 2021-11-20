@@ -1,0 +1,52 @@
+class Solution {
+public:
+    bool validNode(pair<int,int> a,int m,int n){
+        if(a.first<0||a.first>=m||a.second<0||a.second>=n)
+            return false;
+        return true;
+        
+    }
+    
+    
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        //things we need 
+        //a dist vector of same size as mat
+        //A queue for BFS, pair of two int
+        //a dummy node for each transformation
+        //a neighbour node for each transformation
+        
+       int m=mat.size();
+        int n=mat[0].size();
+        //initialized to be -1 indicating node hasn't been visited
+        vector<vector<int>> dist (m, vector<int>(n,-1));
+        queue<pair<int,int>>Q;
+        
+        for(int x=0;x<m;x++)
+            for(int y=0;y<n;y++)
+                if(mat[x][y]==0){ //a source node is met
+                    dist[x][y]=0;
+                    Q.push({x,y});
+                }
+        const int dx[]={0,0,1,-1};
+        const int dy[]={1,-1,0,0};
+        while(!Q.empty()){  //if queue is not empty, we need to start traversal n dequeue
+            pair<int,int>node=Q.front();
+            Q.pop();
+            //start transformation
+            for(int i=0;i<4;i++){
+                pair<int,int>nb={node.first+dx[i],node.second+dy[i]};
+                if(validNode(nb,m,n)&&dist[nb.first][nb.second]==-1){ 
+                    //node is within bounds and also it hasnt been visited, bc if it has been visited, the values for dist will be accumulated up repeatedly every time it is visited
+                    dist[nb.first][nb.second]=dist[node.first][node.second]+1;
+                    Q.push(nb);
+                }
+                
+            }
+            
+        }
+                
+        return dist;
+        
+    }
+    
+};
